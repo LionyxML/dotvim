@@ -1,4 +1,6 @@
 syntax on
+set re=0 
+
 set tabstop=4
 set expandtab
 set hlsearch
