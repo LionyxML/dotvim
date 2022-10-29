@@ -1,4 +1,6 @@
 syntax on
+
+"Fixes slowish syntax highlight, specially on typescript
 set re=0 
 
 set tabstop=4
@@ -7,18 +9,32 @@ set hlsearch
 set ignorecase
 
 set redrawtime=10000
+set cursorline
+set scrolloff=8
+
+set number 
+
+set mouse=a
 
 call plug#begin()
 
+
+"Themes
 Plug 'morhetz/gruvbox'
-Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
+Plug 'sainnhe/everforest'
+Plug 'sainnhe/sonokai'
+
+
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 Plug 'HerringtonDarkholme/yats.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
 Plug 'preservim/nerdtree'
-
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'airblade/vim-gitgutter'
@@ -30,14 +46,48 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'ctrlpvim/ctrlp.vim'
 
-
+" May the colors work!
+let &t_ut=''
 
 call plug#end()
 
 
-colorscheme gruvbox
-" colorscheme one
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+let g:sonokai_style = "atlantis"
+let g:sonokai_disable_italic_comment = 1
+let g:sonokai_transparent_background = 0
+colorscheme sonokai
 set background=dark
+
+
+nmap <Leader>p <Plug>(Prettier)
+
+execute "set <M-i>=\033i"
+execute "set <M-p>=\033p"
+execute "set <M-7>=\0337"
+execute "set <M-8>=\0338"
+execute "set <M-9>=\0339"
+execute "set <M-0>=\0330"
+map <M-i> :NERDTreeToggle<CR>
+map <M-p> :CtrlP<CR>
+map <M-7> :bprevious<CR>
+map <M-8> :bNext<CR>
+map <M-0> <Plug>(GitGutterNextHunk)
+map <M-9> <Plug>(GitGutterPrevHunk)
 
 
 " May need for vim (not neovim) since coc.nvim calculate byte offset by count
@@ -203,7 +253,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 let g:NERDTreeGitStatusIndicatorMapCustom= {
             \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
+    \ "Staged"    : "+",
     \ "Untracked" : "✭",
     \ "Renamed"   : "➜",
     \ "Unmerged"  : "═",
@@ -223,11 +273,11 @@ nmap [h <Plug>(GitGutterPrevHunk) "same as default
 nmap ghs <Plug>(GitGutterStageHunk)
 nmap ghu <Plug>(GitGutterUndoHunk)
 
-let g:gitgutter_sign_added = '✚'
-let g:gitgutter_sign_modified = '✹'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '-'
-let g:gitgutter_sign_modified_removed = '-'
+let g:gitgutter_sign_added = '▋'
+let g:gitgutter_sign_modified = '▋'
+let g:gitgutter_sign_removed = '▋'
+let g:gitgutter_sign_removed_first_line = '▋'
+let g:gitgutter_sign_modified_removed = '▋'
 
 let g:airline_powerline_fonts = 1
 
