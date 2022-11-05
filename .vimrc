@@ -46,10 +46,16 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'ctrlpvim/ctrlp.vim'
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " May the colors work!
 let &t_ut=''
 
 call plug#end()
+
+
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 
 
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -78,12 +84,14 @@ nmap <Leader>p <Plug>(Prettier)
 
 execute "set <M-i>=\033i"
 execute "set <M-p>=\033p"
+execute "set <M-o>=\033o"
 execute "set <M-7>=\0337"
 execute "set <M-8>=\0338"
 execute "set <M-9>=\0339"
 execute "set <M-0>=\0330"
 map <M-i> :NERDTreeToggle<CR>
-map <M-p> :CtrlP<CR>
+map <M-o> :Rg<CR>
+map <M-p> :GFiles<CR>
 map <M-7> :bprevious<CR>
 map <M-8> :bNext<CR>
 map <M-0> <Plug>(GitGutterNextHunk)
