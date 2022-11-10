@@ -4,6 +4,7 @@ syntax on
 set re=0 
 
 set tabstop=4
+set softtabstop=0
 set expandtab
 set hlsearch
 set ignorecase
@@ -17,8 +18,6 @@ set number
 set mouse=a
 
 call plug#begin()
-
-
 "Themes
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
@@ -56,7 +55,6 @@ call plug#end()
 
 
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
-
 
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -271,7 +269,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom= {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
-
 
 set signcolumn=yes
 
