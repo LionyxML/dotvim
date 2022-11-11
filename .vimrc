@@ -43,8 +43,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'tpope/vim-fugitive'
 
-Plug 'ctrlpvim/ctrlp.vim'
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -53,8 +51,6 @@ let &t_ut=''
 
 call plug#end()
 
-
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -252,7 +248,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
 " NERDTree config
-autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
