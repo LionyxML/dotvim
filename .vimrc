@@ -14,6 +14,7 @@ set cursorline
 set scrolloff=8
 
 set number 
+set nowrap
 
 set mouse=a
 
@@ -23,6 +24,7 @@ Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'sainnhe/everforest'
 Plug 'sainnhe/sonokai'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main'}
 
 
 Plug 'prettier/vim-prettier', {
@@ -70,6 +72,7 @@ endif
 let g:sonokai_style = "atlantis"
 let g:sonokai_disable_italic_comment = 1
 let g:sonokai_transparent_background = 0
+
 colorscheme sonokai
 set background=dark
 
