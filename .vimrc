@@ -24,7 +24,7 @@ Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'sainnhe/everforest'
 Plug 'sainnhe/sonokai'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main'}
+Plug 'ghifarit53/tokyonight-vim'
 
 
 Plug 'prettier/vim-prettier', {
@@ -48,10 +48,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" May the colors work!
-let &t_ut=''
+
+Plug 'pantharshit00/vim-prisma'
+
 
 call plug#end()
+
+" May the colors work!
+let &t_ut=''
 
 
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
